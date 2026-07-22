@@ -8,3 +8,7 @@ app.use(express.json());
 app.get("/test", async(req: Request, res:Response) =>{
     res.json({message:"Hello World"});
 })
+
+app.listen(7000, ()=> {
+    console.log("server started on localhost:7000");
+})

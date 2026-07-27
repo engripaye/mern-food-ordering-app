@@ -1,12 +1,10 @@
-import { useState } from 'react'
-import { Button} from "@/components/ui/button.tsx";
-import './App.css'
+import { Button } from "@/components/ui/button"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-   <Button>Click Save</Button>
+    <main className="flex min-h-screen items-center justify-center">
+      <Button>Click me</Button>
+    </main>
   )
 }
 

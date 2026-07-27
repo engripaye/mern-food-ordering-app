@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import MobileNav from "@/components/MobileNav.tsx";
 
 const Header = () => {
   return (
@@ -9,6 +10,10 @@ const Header = () => {
                   className="text-3xl font-bold tracking-tight text-orange-500">
                   LetsEat.com
               </Link>
+
+              <div className="md:hidden">
+                  <MobileNav />
+              </div>
           </div>
 
       </div>

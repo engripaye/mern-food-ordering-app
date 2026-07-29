@@ -11,7 +11,6 @@ createRoot(document.getElementById('root')!).render(
         <Auth0ProviderWithNavigate>
             <AppRoutes />
         </Auth0ProviderWithNavigate>
-        <AppRoutes />
     </Router>
   </StrictMode>,
 )

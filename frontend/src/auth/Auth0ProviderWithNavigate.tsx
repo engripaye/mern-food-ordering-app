@@ -1,4 +1,4 @@
-import {Auth0Provider} from "@auth0/auth0-react";
+import {Auth0Provider, User} from "@auth0/auth0-react";
 
 type Props = {
   children: React.ReactNode;
@@ -12,13 +12,18 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
  if(!domain || !clientId || !redirectUri)
      throw new Error("unable to initialise auth");
 
+ const onRedirectCallback = (appState?: AppState, user?: User) => {
+
+ }
  return(
      <Auth0Provider
          domain={domain}
          clientId={clientId}
          authorizationParams={{
              redirect_uri: redirectUri,
-         }}>
+         }}
+     onRedirectCallback={onRedirectCallback}
+     >
 
          {children}
      </Auth0Provider>

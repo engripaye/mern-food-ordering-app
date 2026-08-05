@@ -1,3 +1,5 @@
+import {useMutation} from "@tanstack/react-query";
+
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 type CreateUserRequest = {
@@ -19,4 +21,11 @@ export const useCreateMyUser=() => {
             throw new Error("Failed to create user");
         }
     };
-}
+
+    const {
+        mutateAsync: createUser,
+        isLoading,
+        isError,
+        isSuccess
+    } = useMutation(createMyUserRequest);
+};

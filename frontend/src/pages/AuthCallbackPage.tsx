@@ -17,7 +17,7 @@ const AuthCallbackPage = () => {
         }
 
         navigate("/");
-    }, []);
+    }, [createUser, navigate, user]);
 
     return<>Loading....</>;
 }

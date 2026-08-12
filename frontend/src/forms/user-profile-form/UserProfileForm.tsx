@@ -3,6 +3,8 @@ import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel} from "@/components/ui/form.tsx";
 import {Input} from "@/components/ui/input.tsx";
+import LoadingButton from "@/components/LoadingButton.tsx";
+import {Button} from "@/components/ui/button.tsx";
 
 
 const formSchema = z.object({
@@ -85,6 +87,10 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
                         </FormItem>
                     )}/>
                 </div>
+                {
+                    isLoading ? <LoadingButton /> : <Button type="submit" className="bg-orange-500"></Button>
+                }
+
             </form>
         </Form>
     )

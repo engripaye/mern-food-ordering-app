@@ -1,6 +1,15 @@
 import { Request, Response } from "express";
 import User from "../model/user";
 
+const getCurrentUser = async (req: Request, res: Response) => {
+  try{
+
+  }catch(error){
+    console.log(error);
+    return res.status(500).json({message:"Something went wrong"});
+  }
+}
+
 const getAuth0Id = (req: Request) => req.auth?.payload.sub;
 
 const createCurrentUser = async (req: Request, res: Response) => {

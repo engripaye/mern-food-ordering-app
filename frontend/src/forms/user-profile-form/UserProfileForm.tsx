@@ -60,7 +60,25 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
                 <div className="flex flex-col md:flex-row gap-4">
                     <FormField control={form.control} name="addressLine1" render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel>Address Line 1</FormLabel>
+                            <FormControl>
+                                <Input {...field} disabled className="bg-white"/>
+                            </FormControl>
+                        </FormItem>
+                    )}/>
+
+                    <FormField control={form.control} name="city" render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>City</FormLabel>
+                            <FormControl>
+                                <Input {...field} disabled className="bg-white"/>
+                            </FormControl>
+                        </FormItem>
+                    )}/>
+
+                    <FormField control={form.control} name="country" render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Country</FormLabel>
                             <FormControl>
                                 <Input {...field} disabled className="bg-white"/>
                             </FormControl>

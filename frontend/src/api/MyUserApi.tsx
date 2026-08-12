@@ -1,4 +1,4 @@
-import {useMutation} from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import {useAuth0} from "@auth0/auth0-react";
 import {toast} from "sonner";
 
@@ -23,6 +23,8 @@ export const useGetMyUser = () => {
 
         return response.json();
     };
+
+    const { data: currentUser, isLoding, error } = useQuery("fetchCurrentUser", )
 };
 
 type CreateUserRequest = {

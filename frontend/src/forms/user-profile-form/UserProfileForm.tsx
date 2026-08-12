@@ -13,6 +13,7 @@ import {
 import {Input} from "@/components/ui/input.tsx";
 import LoadingButton from "@/components/LoadingButton.tsx";
 import {Button} from "@/components/ui/button.tsx";
+import type {User} from "@/types.ts";
 
 
 const formSchema = z.object({
@@ -26,6 +27,7 @@ const formSchema = z.object({
 type UserFormData = z.infer<typeof formSchema>;
 
 type Props = {
+    currentUser: User;
     onSave: (userProfileData: UserFormData) => void;
     isLoading: boolean;
 

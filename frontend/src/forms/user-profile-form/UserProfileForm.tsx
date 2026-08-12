@@ -14,6 +14,7 @@ import {Input} from "@/components/ui/input.tsx";
 import LoadingButton from "@/components/LoadingButton.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import type {User} from "@/types.ts";
+import {useEffect} from "react";
 
 
 const formSchema = z.object({
@@ -38,6 +39,10 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
         resolver: zodResolver(formSchema),
         defaultValues: currentUser,
     });
+
+    useEffect(() => {
+
+    }, [currentUser, form])
 
     return(
         <Form {...form}>

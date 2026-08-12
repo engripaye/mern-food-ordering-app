@@ -55,7 +55,18 @@ type UpdateMyUserRequest = {
 export const useUpdateMyUser=() => {
     const { getAccessTokenSilently } = useAuth0();
 
-    const updateMyUserRequest = async (formData)=>{
+    const updateMyUserRequest = async (formData: UpdateMyUserRequest)=>{
+        const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+        if(!response.ok){
+            throw new Error("Failed to update user");
+        }
 
     }
 }

@@ -61,7 +61,7 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
 
                 <div className="flex flex-col md:flex-row gap-4">
                     <FormField control={form.control} name="addressLine1" render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="flex-1">
                             <FormLabel>Address Line 1</FormLabel>
                             <FormControl>
                                 <Input {...field} className="bg-white"/>
@@ -73,7 +73,7 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
                         <FormItem className="flex-1">
                             <FormLabel>City</FormLabel>
                             <FormControl>
-                                <Input {...field} disabled className="bg-white"/>
+                                <Input {...field} className="bg-white"/>
                             </FormControl>
                         </FormItem>
                     )}/>

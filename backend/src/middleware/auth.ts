@@ -3,7 +3,14 @@ import {Request, Response, NextFunction} from "express";
 import jwt from 'jsonwebtoken';
 import User from "../model/user";
 
-declare global
+declare global{
+    namespace Express {
+        interface Request {
+            userId: string;
+            auth0Id: string;
+        }
+    }
+}
 
 export const jwtCheck = auth({
     audience: process.env.AUTH0_AUDIENCE,
@@ -31,7 +38,7 @@ export const jwtParse = async (req: Request, res: Response, next: NextFunction) 
             return res.sendStatus(401);
         }
 
-        req.auth0Id = auth0Id;
+        req.auth0Id = auth0Id as string;
         req.userId = user._id.toString();
         next();
     }catch (error){

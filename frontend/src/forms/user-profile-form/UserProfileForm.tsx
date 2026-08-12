@@ -1,7 +1,15 @@
 import { z } from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel} from "@/components/ui/form.tsx";
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage
+} from "@/components/ui/form.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import LoadingButton from "@/components/LoadingButton.tsx";
 import {Button} from "@/components/ui/button.tsx";
@@ -56,6 +64,7 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
                         <FormControl>
                             <Input {...field} className="bg-white"/>
                         </FormControl>
+                        <FormMessage />
                     </FormItem>
                 )}/>
 
@@ -66,6 +75,7 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
                             <FormControl>
                                 <Input {...field} className="bg-white"/>
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}/>
 
@@ -75,6 +85,7 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
                             <FormControl>
                                 <Input {...field} className="bg-white"/>
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}/>
 
@@ -84,6 +95,7 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
                             <FormControl>
                                 <Input {...field} className="bg-white"/>
                             </FormControl>
+                            <FormMessage />
                         </FormItem>
                     )}/>
                 </div>

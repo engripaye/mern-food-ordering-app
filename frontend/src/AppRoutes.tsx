@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom"
 import Layout from "./layout/layout";
-import HomePage from "@/pages/HomePage.tsx";
 import AuthCallbackPage from "@/pages/AuthCallbackPage.tsx";
+import UserProfilePage from "@/pages/UserProfilePage.tsx";
 
 const AppRoutes = () =>{
     return(

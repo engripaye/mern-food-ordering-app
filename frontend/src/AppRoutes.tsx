@@ -12,7 +12,8 @@ const AppRoutes = () =>{
             <Route element={<ProtectedRoute />}>
 
                 <Route path="/user-profile"
-                       element={<Layout showHero>
+                       element={
+                    <Layout showHero>
                            <UserProfilePage />
                        </Layout>} />
             </Route>

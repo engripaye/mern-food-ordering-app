@@ -17,8 +17,6 @@ const AppRoutes = () =>{
                            <UserProfilePage />
                        </Layout>} />
 
-
-
             </Route>
 
             <Route path="*" element={<Navigate to ="/"/>} />

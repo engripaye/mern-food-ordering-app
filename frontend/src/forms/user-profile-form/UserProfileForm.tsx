@@ -1,7 +1,8 @@
 import { z } from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {Form, FormDescription, FormField, FormItem, FormLabel} from "@/components/ui/form.tsx";
+import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel} from "@/components/ui/form.tsx";
+import {Input} from "@/components/ui/input.tsx";
 
 
 const formSchema = z.object({
@@ -38,7 +39,10 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
                     </FormDescription>
                     <FormField control={form.control} name="email" render={({ field }) => (
                         <FormItem>
-                            <FormLabel></FormLabel>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                                <Input {...field} disabled className="bg-white"/>
+                            </FormControl>
                         </FormItem>
                     )}/>
                 </div>

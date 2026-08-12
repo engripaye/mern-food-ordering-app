@@ -37,6 +37,8 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
                     <FormDescription>
                         View and change your profile information here
                     </FormDescription>
+
+                </div>
                     <FormField control={form.control} name="email" render={({ field }) => (
                         <FormItem>
                             <FormLabel>Email</FormLabel>
@@ -45,8 +47,26 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
                             </FormControl>
                         </FormItem>
                     )}/>
-                </div>
 
+                <FormField control={form.control} name="name" render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                            <Input {...field} disabled className="bg-white"/>
+                        </FormControl>
+                    </FormItem>
+                )}/>
+
+                <div className="flex flex-col md:flex-row gap-4">
+                    <FormField control={form.control} name="addressLine1" render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Email</FormLabel>
+                            <FormControl>
+                                <Input {...field} disabled className="bg-white"/>
+                            </FormControl>
+                        </FormItem>
+                    )}/>
+                </div>
             </form>
         </Form>
     )

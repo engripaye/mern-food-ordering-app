@@ -1,9 +1,10 @@
 import UserProfileForm from "@/forms/user-profile-form/UserProfileForm.tsx";
-import {useUpdateMyUser} from "@/api/MyUserApi.tsx";
+import {useGetMyUser, useUpdateMyUser} from "@/api/MyUserApi.tsx";
 
 const UserProfilePage = () => {
 
-    const { updateUser, isLoading } = useUpdateMyUser()
+    const { currentUser, isLoading: isGetLoading } = useGetMyUser();
+    const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser();
     return(
         <UserProfileForm onSave={updateUser} isLoading={isLoading} />
     );

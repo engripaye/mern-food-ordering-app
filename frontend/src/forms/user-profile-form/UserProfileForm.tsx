@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {Form} from "@/components/ui/form.tsx";
 
 
 const formSchema = z.object({
@@ -24,6 +25,12 @@ const UserProfileForm = ({ onSave, isLoading}: Props) => {
         resolver: zodResolver(formSchema),
     });
 
+    return(
+        <Form {...form}>
+
+        </Form>
+    )
+
 }
 
-export default UserProfileForm
+export default UserProfileForm;

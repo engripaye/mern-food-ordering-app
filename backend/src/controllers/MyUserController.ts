@@ -3,7 +3,12 @@ import User from "../model/user";
 
 const getCurrentUser = async (req: Request, res: Response) => {
   try{
+    const currentUser = await User.findOne({ _id: req.userId });
+    if (!currentUser) {
+      return res.status(401).json({ message: "User not found" });
+    }
 
+    res.json(currentUser);
   }catch(error){
     console.log(error);
     return res.status(500).json({message:"Something went wrong"});
@@ -66,6 +71,7 @@ const updateCurrentUser = async (req: Request, res: Response) => {
 };
 
 export default {
+  getCurrentUser,
   createCurrentUser,
   updateCurrentUser,
 };

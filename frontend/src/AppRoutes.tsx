@@ -8,7 +8,7 @@ const AppRoutes = () =>{
         <Routes>
             <Route path="/auth-callback" element={<AuthCallbackPage/>} />
             <Route path="/user-profile"
-                   element={<Layout>
+                   element={<Layout showHero>
                 <UserProfilePage />
             </Layout>} />
             <Route path="*" element={<Navigate to ="/"/>} />

@@ -15,10 +15,15 @@ export const useGetMyUser = () => {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "application/json",
-            }
-        })
-    }
-}
+            },
+        });
+        if(!response.ok) {
+            throw new Error("Failed to fetch user");
+        }
+
+        return response.json();
+    };
+};
 
 type CreateUserRequest = {
     auth0Id: string;

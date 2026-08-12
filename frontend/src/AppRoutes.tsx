@@ -16,6 +16,8 @@ const AppRoutes = () =>{
                     <Layout showHero>
                            <UserProfilePage />
                        </Layout>} />
+
+                
             </Route>
 
             <Route path="*" element={<Navigate to ="/"/>} />

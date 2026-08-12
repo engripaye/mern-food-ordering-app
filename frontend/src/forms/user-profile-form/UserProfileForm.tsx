@@ -33,9 +33,10 @@ type Props = {
 
 }
 
-const UserProfileForm = ({ onSave, isLoading}: Props) => {
+const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
     const form = useForm<UserFormData>({
         resolver: zodResolver(formSchema),
+        defaultValues: currentUser,
     });
 
     return(

@@ -1,53 +1,62 @@
 import { Request, Response } from "express";
 import User from "../model/user";
 
-const createCurrentUser = async(req: Request, res: Response) => {
+const getAuth0Id = (req: Request) => req.auth?.payload.sub;
 
-    try {
-        const { auth0Id } = req.body;
-        const existingUser = await User.findOne({ auth0Id });
+const createCurrentUser = async (req: Request, res: Response) => {
+  const auth0Id = getAuth0Id(req);
 
+  if (!auth0Id) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
 
-        if (existingUser) {
-            return res.status(200).send();
-        }
+  try {
+    const { email } = req.body;
+    const existingUser = await User.findOne({ auth0Id });
 
-        const newUser = new User(req.body);
-        await newUser.save();
-
-        res.status(201).json(newUser.toObject());
-    }catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Error creating user"});
+    if (existingUser) {
+      return res.status(200).send();
     }
 
-    const updateCurrentUser = async (req: Request, res: Response) => {
-        try{
-            const { name, addressLine1, country, city } = req.body;
-            const user = await User.findById(req.userId);
+    const newUser = new User({ auth0Id, email });
+    await newUser.save();
 
-            if(!user) {
-                return res.status(404).json({ message: "User not found" });
-            }
+    return res.status(201).json(newUser.toObject());
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Error creating user" });
+  }
+};
 
-            user.name = name;
-            user.addressLine1 = addressLine1;
-            user.city = city;
-            user.country = country;
+const updateCurrentUser = async (req: Request, res: Response) => {
+  const auth0Id = getAuth0Id(req);
 
-            await user.save();
+  if (!auth0Id) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
 
-            res.send(user);
-        }catch (error) {
-            console.log(error);
-            res.status(500).json({ message: "Error updating user"});
-        }
+  try {
+    const { name, addressLine1, city, country } = req.body;
+    const user = await User.findOne({ auth0Id });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
     }
 
-}
+    user.name = name;
+    user.addressLine1 = addressLine1;
+    user.city = city;
+    user.country = country;
+    await user.save();
 
+    return res.json(user.toObject());
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Error updating user" });
+  }
+};
 
-export default{
-    createCurrentUser,
-    updateCurrentUser,
+export default {
+  createCurrentUser,
+  updateCurrentUser,
 };

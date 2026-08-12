@@ -4,6 +4,22 @@ import {toast} from "sonner";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+export const useGetMyUser = () => {
+    const { getAccessTokenSilently } = useAuth0();
+
+    const getMyUserRequest = async () => {
+        const accessToken = await getAccessTokenSilently();
+
+        const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "application/json",
+            }
+        })
+    }
+}
+
 type CreateUserRequest = {
     auth0Id: string;
     email: string;

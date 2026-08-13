@@ -11,7 +11,7 @@ const getCurrentUser = async (req: Request, res: Response) => {
   try{
     const currentUser = await User.findOne({ auth0Id });
     if (!currentUser) {
-      return res.status(401).json({ message: "User not found" });
+      return res.status(404).json({ message: "User not found" });
     }
 
     res.json(currentUser);

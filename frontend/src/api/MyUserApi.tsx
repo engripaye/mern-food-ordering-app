@@ -49,7 +49,7 @@ export const useCreateMyUser=() => {
     const createMyUserRequest = async (user: CreateUserRequest) => {
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`${API_BASE_URL}/api/my/user`, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "application/json",
@@ -92,7 +92,7 @@ export const useUpdateMyUser=() => {
     const updateMyUserRequest = async (formData: UpdateMyUserRequest)=>{
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`${API_BASE_URL}/api/my/user`, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "application/json",

@@ -5,6 +5,11 @@ import type {User} from "@/types.ts";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+const getErrorMessage = async (response: Response, fallback: string) => {
+    const body = await response.json().catch(() => null);
+    return body?.message ?? `${fallback} (HTTP ${response.status})`;
+};
+
 export const useGetMyUser = () => {
     const { getAccessTokenSilently } = useAuth0();
 
@@ -19,7 +24,7 @@ export const useGetMyUser = () => {
             },
         });
         if(!response.ok) {
-            throw new Error("Failed to fetch user");
+            throw new Error(await getErrorMessage(response, "Failed to fetch user"));
         }
 
         return response.json();
@@ -58,7 +63,7 @@ export const useCreateMyUser=() => {
         });
 
         if(!response.ok){
-            throw new Error("Failed to create user");
+            throw new Error(await getErrorMessage(response, "Failed to create user"));
         }
     };
 
@@ -100,7 +105,7 @@ export const useUpdateMyUser=() => {
             body: JSON.stringify(formData),
         });
         if(!response.ok){
-            throw new Error("Failed to update user");
+            throw new Error(await getErrorMessage(response, "Failed to update user"));
         }
 
         return response.json()

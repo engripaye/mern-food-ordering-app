@@ -4,7 +4,6 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -41,7 +40,7 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
     });
 
     useEffect(() => {
-
+        form.reset(currentUser);
     }, [currentUser, form])
 
     return(
@@ -52,9 +51,9 @@ const UserProfileForm = ({ onSave, isLoading, currentUser }: Props) => {
             >
                 <div>
                     <h2 className="text-2xl font-bold"> User Profile Form</h2>
-                    <FormDescription>
+                    <p className="text-sm text-muted-foreground">
                         View and change your profile information here
-                    </FormDescription>
+                    </p>
 
                 </div>
                     <FormField control={form.control} name="email" render={({ field }) => (

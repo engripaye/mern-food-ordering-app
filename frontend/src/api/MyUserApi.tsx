@@ -10,13 +10,23 @@ const getErrorMessage = async (response: Response, fallback: string) => {
     return body?.message ?? `${fallback} (HTTP ${response.status})`;
 };
 
+const requestApi = async (url: string, options: RequestInit) => {
+    try {
+        return await fetch(url, options);
+    } catch {
+        throw new Error(
+            "Unable to reach the backend API. Start it with `npm run dev` in the backend folder."
+        );
+    }
+};
+
 export const useGetMyUser = () => {
     const { getAccessTokenSilently } = useAuth0();
 
     const getMyUserRequest = async (): Promise<User> => {
         const accessToken = await getAccessTokenSilently();
 
-        const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+        const response = await requestApi(`${API_BASE_URL}/api/my/user`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -53,7 +63,7 @@ export const useCreateMyUser=() => {
 
     const createMyUserRequest = async (user: CreateUserRequest) => {
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+        const response = await requestApi(`${API_BASE_URL}/api/my/user`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -96,7 +106,7 @@ export const useUpdateMyUser=() => {
 
     const updateMyUserRequest = async (formData: UpdateMyUserRequest)=>{
         const accessToken = await getAccessTokenSilently();
-        const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+        const response = await requestApi(`${API_BASE_URL}/api/my/user`, {
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${accessToken}`,

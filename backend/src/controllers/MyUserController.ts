@@ -2,8 +2,14 @@ import { Request, Response } from "express";
 import User from "../model/user";
 
 const getCurrentUser = async (req: Request, res: Response) => {
+  const auth0Id = getAuth0Id(req);
+
+  if (!auth0Id) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
   try{
-    const currentUser = await User.findOne({ _id: req.userId });
+    const currentUser = await User.findOne({ auth0Id });
     if (!currentUser) {
       return res.status(401).json({ message: "User not found" });
     }

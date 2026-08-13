@@ -25,7 +25,10 @@ export const useGetMyUser = () => {
         return response.json();
     };
 
-    const { data: currentUser, isLoading, error } = useQuery("fetchCurrentUser", getMyUserRequest);
+    const { data: currentUser, isLoading, error } = useQuery({
+        queryKey: ["fetchCurrentUser"],
+        queryFn: getMyUserRequest,
+    });
 
     if (error) {
         toast.error(error.toString());
@@ -46,7 +49,7 @@ export const useCreateMyUser=() => {
     const createMyUserRequest = async (user: CreateUserRequest) => {
         const accessToken = await getAccessTokenSilently();
         const response = await fetch(`${API_BASE_URL}/api/my/user`, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "application/json",
@@ -104,7 +107,15 @@ export const useUpdateMyUser=() => {
 
     };
 
-    const { mutateAsync: updateUser, isLoading, isSuccess, error, reset } = useMutation(updateMyUserRequest);
+    const {
+        mutateAsync: updateUser,
+        isPending: isLoading,
+        isSuccess,
+        error,
+        reset,
+    } = useMutation({
+        mutationFn: updateMyUserRequest,
+    });
 
     if(isSuccess){
         toast.success("User profile updated successfully!");
